@@ -1,0 +1,41 @@
+<<<<<<< HEAD
+﻿@model DSAR.ViewModels.UserView
+@{
+    Layout = null;
+}
+=======
+﻿@model User
+
+>>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form asp-action="Logout" method="post">
+        <button type="submit">Logout</button>
+    </form>
+    @if (Model != null)
+    {
+        <p> @Model.FullName <strong>مرحباً ياً:</strong> </p>
+    }
+    else
+    {
+        <p>No user found.</p>
+    }
+    
+    <form asp-controller="Fun" asp-action="Insert" method="post">
+        <input type="submit" name="name" value="Insert" />
+    </form>
+        <form asp-controller="Fun" asp-action="list" method="post">
+    <input type="submit" name="name" value="list" />
+    </form>
+
+    
+   
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿@model User
+<<<<<<< HEAD
+   @{
+       Layout = null;
+   }
+=======
+
+>>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form asp-action="Logout" asp-controller="User" method="post">
+        <button type="submit">Logout</button>
+    </form>
+    @if (Model != null)
+    {
+        <p> @Model.FullName <strong>مرحباً ياً:</strong> </p>
+    }
+    else
+    {
+        <p>No user found.</p>
+    }
+
+<form method="post" asp-controller="Fun" asp-action="Create">
+    <div>
+        <label asp-for="UserId"></label>
+<<<<<<< HEAD
+        <input type="text" asp-for="UserId" placeholder="Id" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+            <input type="password" asp-for="Password" placeholder="Password" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="Email"></label>
+            <input type="email" asp-for="Email" placeholder="Email" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="FullName"></label>
+            <input type="text" asp-for="FullName" placeholder="FullName" class="form-control" />
+=======
+        <input type="text" asp-for="UserId" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+        <input type="password" asp-for="Password" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="Email"></label>
+        <input type="email" asp-for="Email" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="FullName"></label>
+        <input type="text" asp-for="FullName" class="form-control" />
+>>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
+    </div>
+    <div>
+        <button type="submit">Create</button>
+    </div>
+</form>
+</body>
+</html>
