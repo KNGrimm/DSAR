@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+
+﻿using DSAR.ViewModels;
+using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,7 +42,15 @@ namespace DSAR.Controllers
             }
 
             var user = await _context.User.FirstOrDefaultAsync(u => u.UserId == userId.Value);
-            return View(user);
+
+
+            UserView userView = new UserView
+            {
+                FullName = user.FullName,
+            };
+            return View(userView);
+
+           
         }
         [HttpPost]
         public IActionResult Logout()

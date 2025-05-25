@@ -1,4 +1,6 @@
-﻿using DSAR.Models;
+
+using DSAR.ViewModels;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,17 +30,76 @@ namespace DSAR.Controllers
 
             if (userId == null)
             {
-                return RedirectToAction("Login");
+
+                return RedirectToAction("Login","User");
+            
             }
 
             var user = await _context.User.FirstOrDefaultAsync(u => u.UserId == userId.Value);
             return View(user);
         }
+
+        public async Task<IActionResult> list()
+        {
+            var users = await _context.User.ToListAsync();
+
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            var currentUser = await _context.User.FirstOrDefaultAsync(u => u.UserId == userId);
+
+           
+
+            var userView = new UserView
+            {
+                Users = users,
+                FullName = currentUser.FullName,
+                Email = currentUser.Email
+            };
+
+            return View(userView); // This passes both the list & current user
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var users = await _context.User.ToListAsync();
+
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            var user = await _context.User.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+        [HttpPost]
+        public async Task<IActionResult> update(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.User.Update(user); // ✅ Update user
+                await _context.SaveChangesAsync(); // ✅ Save changes
+                return RedirectToAction("list"); // Go back to list
+            }
+
+            return View(user); // In case of validation errors
+        }
+
+
         public async Task<ActionResult> list()
         {
             var students = await _context.User.ToListAsync(); // Fetch all students
             return View(); // Pass data to the view for printing
         }
+
         // GET: FunController/Details/5
         public ActionResult Details(int id)
         {
@@ -71,45 +132,56 @@ namespace DSAR.Controllers
         }
 
         // GET: FunController/Edit/5
-        public ActionResult Edit(int id)
+
+
+        // DELETE (Remove Student)
+        // ===========================
+
+        // Show confirmation page for deleting a student
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+            var users = await _context.User.ToListAsync();
+
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            var user = await _context.User.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
         }
 
-        // POST: FunController/Edit/5
-        [HttpPost]
+        
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int userid)
         {
-            try
+            var user = await _context.User.FindAsync(userid);
+            if (user == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
+
+            _context.User.Remove(user);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("list"); // Redirect to user list after deletion
         }
 
-        // GET: FunController/Delete/5
+
+
+
+        
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: FunController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }
