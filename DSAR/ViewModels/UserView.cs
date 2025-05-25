@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-﻿using DSAR.Models;
+
+using DSAR.Models;
 
 namespace DSAR.ViewModels
 {
@@ -12,14 +12,5 @@ namespace DSAR.ViewModels
 
     }
     
-=======
-﻿namespace DSAR.ViewModels
-{
-    public class UserView
-    {
-        public int Email { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-    }
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
+
 }

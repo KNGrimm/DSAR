@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-﻿using DSAR.ViewModels;
+using DSAR.ViewModels;
 using Microsoft.AspNetCore.Http;
-=======
-﻿using Microsoft.AspNetCore.Http;
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,16 +41,12 @@ namespace DSAR.Controllers
             }
 
             var user = await _context.User.FirstOrDefaultAsync(u => u.UserId == userId.Value);
-<<<<<<< HEAD
 
             UserView userView = new UserView
             {
                 FullName = user.FullName,
             };
             return View(userView);
-=======
-            return View(user);
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
         }
         [HttpPost]
         public IActionResult Logout()
