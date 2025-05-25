@@ -1,11 +1,6 @@
-﻿using DSAR.Models;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 using DSAR.ViewModels;
-=======
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
-=======
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -35,22 +30,15 @@ namespace DSAR.Controllers
 
             if (userId == null)
             {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                 return RedirectToAction("Login","User");
-=======
-                return RedirectToAction("Login");
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
-=======
-                return RedirectToAction("Login");
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
+            
             }
 
             var user = await _context.User.FirstOrDefaultAsync(u => u.UserId == userId.Value);
             return View(user);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         public async Task<IActionResult> list()
         {
             var users = await _context.User.ToListAsync();
@@ -105,18 +93,13 @@ namespace DSAR.Controllers
             return View(user); // In case of validation errors
         }
 
-=======
-=======
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
+
         public async Task<ActionResult> list()
         {
             var students = await _context.User.ToListAsync(); // Fetch all students
             return View(); // Pass data to the view for printing
         }
-<<<<<<< HEAD
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
-=======
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
+
         // GET: FunController/Details/5
         public ActionResult Details(int id)
         {
@@ -149,8 +132,7 @@ namespace DSAR.Controllers
         }
 
         // GET: FunController/Edit/5
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
         // DELETE (Remove Student)
         // ===========================
@@ -190,62 +172,16 @@ namespace DSAR.Controllers
 
             return RedirectToAction("list"); // Redirect to user list after deletion
         }
-=======
-=======
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
-<<<<<<< HEAD
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
-=======
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
-        // POST: FunController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: FunController/Delete/5
-<<<<<<< HEAD
-<<<<<<< HEAD
-      
-=======
-=======
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
+
+
+        
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: FunController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-<<<<<<< HEAD
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
-=======
->>>>>>> 56832847cdeabe744161f1af819174b8cf5fe246
+       
     }
 }
